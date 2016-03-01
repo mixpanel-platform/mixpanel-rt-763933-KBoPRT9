@@ -9,7 +9,30 @@
   <body class="mixpanel-platform-body">
     <h1>Hello, World!</h1>
     <script>
-      // Run queries and display results here
+      var iOSParams = {
+        from_date:'2016-02-01',
+        to_date:'2016-03-01',
+        limit:200,
+        where:'(properties["$os"] == "iPhone iOS" or properties["$os"] == "iPhone OS")',
+        interval:30
+      }
+      
+      var androidParams = {
+        from_date:'2016-02-01',
+        to_date:'2016-03-01',
+        limit:200,
+        where:'(properties["$os"] == "Android")',
+        interval:30
+      }
+      
+      var funnelSteps = ["app-install", "App Opened", "6 Month Recurring", "Payment Started", "Payment Completed", "Sponsor Subscription Completed"]
+      
+      var iOSFunnel = MP.api.funnel(funnelSteps, iOSParams)
+      
+      $.when(iOSFunnel).done(function(result){
+        debugger
+      })
+      
     </script>
   </body>
 </html>

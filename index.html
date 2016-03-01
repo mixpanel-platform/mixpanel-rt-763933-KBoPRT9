@@ -27,7 +27,7 @@
       
       var funnelSteps = ["app-install", "App Opened", "6 Month Recurring", "Payment Started", "Payment Completed", "Sponsor Subscription Completed"]
       
-      var iOSFunnel = MP.api.funnel(funnelSteps, iOSParams)
+      var iOSFunnel = MP.api.funnel("app-install", "App Opened", "6 Month Recurring", "Payment Started", "Payment Completed", "Sponsor Subscription Completed", iOSParams)
       
       $.when(iOSFunnel).done(function(result){
         debugger

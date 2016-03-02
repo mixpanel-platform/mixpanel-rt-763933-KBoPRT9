@@ -83,7 +83,9 @@
         }
         
         _.each(steps, function(el, idx){
-          labels.push(el.event)
+          if (el.event){
+            labels.push(el.event)
+          }
         })
         var data = {
           labels: labels,

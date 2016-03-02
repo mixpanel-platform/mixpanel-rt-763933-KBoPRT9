@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="https://cdn.mxpnl.com/libs/mixpanel-platform/css/reset.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.mxpnl.com/libs/mixpanel-platform/build/mixpanel-platform.v0.latest.min.css">
+    <script src="https://d3js.org/d3.v3.min.js"></script>
     <script src="https://cdn.mxpnl.com/libs/mixpanel-platform/build/mixpanel-platform.v0.latest.min.js"></script>
   </head>
   <body class="mixpanel-platform-body">
@@ -25,12 +26,40 @@
         interval:30
       }
       
-      var funnelSteps = ["app-install", "App Opened", "6 Month Recurring", "Payment Started", "Payment Completed", "Sponsor Subscription Completed"]
+      var steps = [{"event":"app-install"},{"event":"App Opened"},{"event":"6 Month Recurring"},{"event":"Payment Started"},{"event":"Payment Completed"},{"event":"Sponsor Subscription Completed"}]
       
-      var iOSFunnel = MP.api.funnel("app-install", "App Opened", "6 Month Recurring", "Payment Started", "Payment Completed", "Sponsor Subscription Completed", iOSParams)
-      
-      $.when(iOSFunnel).done(function(result){
+      var iOS = MP.api.funnel(steps, iOSParams)
+      var android = MP.api.funnel(steps, androidParams)
+      var resultTransfrom = function (data){
         debugger
+        return data
+      }
+      
+      $.when(iOS, android).done(function(iOS, android){
+        var iOSData = resultTransform(iOS)
+        var androidData = resultTransform(android)
+        
+        var chart = c3.generate({
+        data: {
+          columns: [
+              ['data1', 30, 20, 50, 40, 60, 50],
+              ['data2', 200, 130, 90, 240, 130, 220],
+              ['data3', 300, 200, 160, 400, 250, 250],
+              ['data4', 200, 130, 90, 240, 130, 220],
+              ['data5', 130, 120, 150, 140, 160, 150],
+              ['data6', 90, 70, 20, 50, 60, 120],
+          ],
+          type: 'bar',
+          types: {
+              data3: 'spline',
+              data4: 'line',
+              data6: 'area',
+          },
+          groups: [
+              ['data1','data2']
+          ]
+      }
+});
       })
       
     </script>

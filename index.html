@@ -38,7 +38,9 @@
         
         results = []
         _.each(data, function(el, idx){
-          results.push(el.count)
+          _.each(el, function(obj, date){
+            results.push(obj.count)
+          })
         })
         return results
       }

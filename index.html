@@ -26,7 +26,7 @@
         interval:30
       }
       
-      var steps = [{"event":"app-install"},{"event":"App Opened"},{"event":"6 Month Recurring"},{"event":"Payment Started"},{"event":"Payment Completed"},{"event":"Sponsor Subscription Completed"}]
+      var steps = ({"event":"app-install"},{"event":"App Opened"},{"event":"6 Month Recurring"},{"event":"Payment Started"},{"event":"Payment Completed"},{"event":"Sponsor Subscription Completed"})
       
       var iOS = MP.api.funnel(steps, iOSParams)
       var android = MP.api.funnel(steps, androidParams)

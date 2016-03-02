@@ -37,7 +37,7 @@
       var resultTransform = function (data){
         debugger
         results = []
-        _.each(data.values(), function(el, idx){
+        _.each(data, function(el, idx){
           results.push(el.count)
         })
         return results

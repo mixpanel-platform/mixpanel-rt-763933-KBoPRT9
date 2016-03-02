@@ -35,7 +35,7 @@
       var iOS = MP.api.funnel.apply(MP.api, iOSFunnel)
       var android = MP.api.funnel.apply(MP.api, androidFunnel)
       var resultTransform = function (data){
-        debugger
+        
         results = []
         _.each(data, function(el, idx){
           results.push(el.count)
@@ -44,6 +44,7 @@
       }
       
       $.when(iOS, android).done(function(iOS, android){
+        debugger
         var iOSData = resultTransform(iOS)
         var androidData = resultTransform(android)
         var ctx = document.getElementById("myChart").getContext("2d");

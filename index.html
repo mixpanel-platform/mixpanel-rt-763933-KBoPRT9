@@ -119,7 +119,7 @@
           ]
         };
         var myBarChart = new Chart(ctx).Bar(data, options);
-        var chart = new Chartist.Line('.ct-chart', {
+        new Chartist.Bar('.ct-chart', 
           labels: steps,
           // Naming the series with the series object array notation
           series: [{

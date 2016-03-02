@@ -4,10 +4,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="https://cdn.mxpnl.com/libs/mixpanel-platform/css/reset.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.mxpnl.com/libs/mixpanel-platform/build/mixpanel-platform.v0.latest.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js"></script>
     <script src="https://cdn.mxpnl.com/libs/mixpanel-platform/build/mixpanel-platform.v0.latest.min.js"></script>
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
-    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
   </head>
   <body class="mixpanel-platform-body">
     <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
@@ -57,83 +54,10 @@
         
         var labels =[]
         
-        var options = {
-            //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
-            scaleBeginAtZero : true,
-        
-            //Boolean - Whether grid lines are shown across the chart
-            scaleShowGridLines : true,
-        
-            //String - Colour of the grid lines
-            scaleGridLineColor : "rgba(0,0,0,.05)",
-        
-            //Number - Width of the grid lines
-            scaleGridLineWidth : 1,
-        
-            //Boolean - Whether to show horizontal lines (except X axis)
-            scaleShowHorizontalLines: true,
-        
-            //Boolean - Whether to show vertical lines (except Y axis)
-            scaleShowVerticalLines: true,
-        
-            //Boolean - If there is a stroke on each bar
-            barShowStroke : true,
-        
-            //Number - Pixel width of the bar stroke
-            barStrokeWidth : 2,
-        
-            //Number - Spacing between each of the X value sets
-            barValueSpacing : 5,
-        
-            //Number - Spacing between data sets within X values
-            barDatasetSpacing : 1,
-        
-            //String - A legend template
-            legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].fillColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
-        
-        }
-        
         _.each(steps, function(el, idx){
           if (el.event){
             labels.push(el.event)
           }
-        })
-        
-        var data = {
-          labels: labels,
-          datasets: [
-            {
-              label: "iOS",
-              fillColor: "rgba(220,220,220,0.5)",
-              strokeColor: "rgba(220,220,220,0.8)",
-              highlightFill: "rgba(220,220,220,0.75)",
-              highlightStroke: "rgba(220,220,220,1)",
-              data: iOSData
-          },
-          {
-              label: "Android",
-              fillColor: "rgba(151,187,205,0.5)",
-              strokeColor: "rgba(151,187,205,0.8)",
-              highlightFill: "rgba(151,187,205,0.75)",
-              highlightStroke: "rgba(151,187,205,1)",
-              data: androidData
-            }
-          ]
-        };
-        
-        var myBarChart = new Chart(ctx).Bar(data, options);
-        new Chartist.Bar('.ct-chart', { 
-          labels: labels,
-          // Naming the series with the series object array notation
-          series: [{
-            name: 'Android',
-            data: androidData
-          }, {
-            name: 'iOS',
-            data: iOSData
-          }]
-        }, {
-          fullWidth: true,
         })
         
         $('#container').highcharts({
@@ -156,7 +80,7 @@
           tooltip: {
               headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
               pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                  '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                  '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
               footerFormat: '</table>',
               shared: true,
               useHTML: true

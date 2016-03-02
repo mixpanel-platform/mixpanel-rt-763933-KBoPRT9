@@ -26,16 +26,14 @@
         interval:30
       }
       
-      var steps = [{"event":"app-install"},{"event":"App Opened"},{"event":"6 Month Recurring"},{"event":"Payment Started"},{"event":"Payment Completed"},{"event":"Sponsor Subscription Completed"}]
-      var iOSFunnel = steps
-      iOSFunnel.push(iOSParams)
-      var androidFunnel = steps
-      androidFunnel.push(androidParams)
-      console.log(iOSFunnel)
-      console.log(androidFunnel)
+      var iOSSteps = [{"event":"app-install"},{"event":"App Opened"},{"event":"6 Month Recurring"},{"event":"Payment Started"},{"event":"Payment Completed"},{"event":"Sponsor Subscription Completed"}]
+      var androidSteps = [{"event":"app-install"},{"event":"App Opened"},{"event":"6 Month Recurring"},{"event":"Payment Started"},{"event":"Payment Completed"},{"event":"Sponsor Subscription Completed"}]
+      iOSSteps.push(iOSParams)
+      androidSteps.push(androidParams)
       
-      var iOS = MP.api.funnel.apply(MP.api, iOSFunnel)
-      var android = MP.api.funnel.apply(MP.api, androidFunnel)
+      var iOS = MP.api.funnel.apply(MP.api, iOSSteps)
+      var android = MP.api.funnel.apply(MP.api, androidSteps)
+      
       var resultTransform = function (data){
         results = []
         _.each(data, function(el, idx){

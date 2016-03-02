@@ -31,11 +31,12 @@
       iOSFunnel.push(iOSParams)
       var androidFunnel = steps
       androidFunnel.push(androidParams)
+      console.log(iOSFunnel)
+      console.log(androidFunnel)
       
       var iOS = MP.api.funnel.apply(MP.api, iOSFunnel)
       var android = MP.api.funnel.apply(MP.api, androidFunnel)
       var resultTransform = function (data){
-        
         results = []
         _.each(data, function(el, idx){
           _.each(el, function(obj, date){

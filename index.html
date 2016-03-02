@@ -119,8 +119,8 @@
           ]
         };
         var myBarChart = new Chart(ctx).Bar(data, options);
-        new Chartist.Bar('.ct-chart', 
-          labels: steps,
+        new Chartist.Bar('.ct-chart', { 
+          labels: labels,
           // Naming the series with the series object array notation
           series: [{
             name: 'Android',

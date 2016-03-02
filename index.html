@@ -45,7 +45,7 @@
         var ctx = document.getElementById("myChart").getContext("2d");
         var myBarChart = new Chart(ctx).Bar(data, options);
         var labels =[]
-        _.each(steps, function(el, idx{
+        _.each(steps, function(el, idx){
           labels.push(el.event)
         }))
         
